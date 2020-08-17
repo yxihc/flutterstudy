@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
+      routes: <String,WidgetBuilder>{
+        '/splash': (BuildContext context) => new SplashPage(),
+      },
     );
   }
 }
@@ -78,11 +81,15 @@ class RouterLayout extends StatelessWidget{
       children:<Widget> [
         RaisedButton(
           onPressed: (){
-            Navigator.push(context,
-                new MaterialPageRoute(builder:(context){
-                 return new SplashPage();
-                } )
-            );
+//            Navigator.push(context,
+//                new MaterialPageRoute(builder:(context){
+//                 return new SplashPage();
+//                } )
+//            );
+
+            //弹出路由，跳转到其他页面
+            Navigator.of(context).pushNamed("/splash");
+
           },
           child: new Text('欢迎页'),
           textColor: Colors.white,
