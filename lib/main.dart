@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
-      routes: <String,WidgetBuilder>{
+      routes: <String, WidgetBuilder>{
         '/splash': (BuildContext context) => new SplashPage(),
       },
     );
@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           RowLayout(),
           RouterLayout(),
+          ContainerLayout(),
 //          ColumnLayout(),
-
           Text(
             'You have pushed the12222121wwqqwwq',
             style: TextStyle(
@@ -72,34 +72,54 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
-class RouterLayout extends StatelessWidget{
+class RouterLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:<Widget> [
+      children: <Widget>[
         RaisedButton(
-          onPressed: (){
+          onPressed: () {
 //            Navigator.push(context,
 //                new MaterialPageRoute(builder:(context){
 //                 return new SplashPage();
 //                } )
 //            );
-
             //弹出路由，跳转到其他页面
             Navigator.of(context).pushNamed("/splash");
-
           },
           child: new Text('欢迎页'),
           textColor: Colors.white,
           color: Colors.blue,
         )
-
       ],
     );
   }
+}
 
+class ContainerLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      padding: EdgeInsets.all(10),
+      constraints: BoxConstraints(
+        minWidth: double.infinity, //宽度尽可能大
+      ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [Colors.red, Colors.orange[700]]),
+        //背景渐变
+        borderRadius: BorderRadius.circular(3.0), //3像素圆角
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('asdads'),
+          Text('asdads1121222'),
+          Text('asdads'),
+        ],
+      ),
+    );
+  }
 }
 
 class ColumnLayout extends StatelessWidget {
@@ -108,7 +128,7 @@ class ColumnLayout extends StatelessWidget {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children:<Widget> [
+        children: <Widget>[
           Expanded(
             flex: 1,
             child: RaisedButton(
