@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          dividerColor: Colors.red),
       home: MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/splash': (BuildContext context) => new SplashPage(),
@@ -30,9 +30,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    netWork();
+    setState(() {
+      _counter = 1000;
+    });
+    super.initState();
+  }
+
+  void netWork() {
+    print('asdsaddasdasdasdsadasdasdasd111');
+  }
+
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void sub() {
+    _counter--;
+
+    setState(() {
+      _counter;
     });
   }
 
@@ -49,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           RowLayout(),
           RouterLayout(),
           ContainerLayout(),
+          FlexLayout(),
 //          ColumnLayout(),
           Text(
             'You have pushed the12222121wwqqwwq',
@@ -64,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: sub,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
@@ -96,15 +118,29 @@ class RouterLayout extends StatelessWidget {
   }
 }
 
+class FlexLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      child: Flex(
+        direction: Axis.vertical,
+        children: <Widget>[Text('dasdsdasdasda')],
+      ),
+    );
+  }
+}
+
 class ContainerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
       padding: EdgeInsets.all(10),
-      constraints: BoxConstraints(
-        minWidth: double.infinity, //宽度尽可能大
-      ),
+      width: double.infinity,
+//      constraints: BoxConstraints(
+//        minWidth: double.infinity, //宽度尽可能大
+//      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [Colors.red, Colors.orange[700]]),
         //背景渐变
